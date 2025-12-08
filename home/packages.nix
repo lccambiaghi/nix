@@ -5,23 +5,23 @@
       # dev tools
       curl
       vim
-      tmux
+      #tmux
       htop
-      tree
+      #tree
       ripgrep
       gh
-      zoxide
+      #zoxide
 
       # programming languages
-      mise # node, deno, bun, rust, python, etc.
+      #mise # node, deno, bun, rust, python, etc.
 
       # misc
-      nil
-      biome
-      nixfmt-rfc-style
-      yt-dlp
-      ffmpeg
-      ollama
+      #nil
+      #biome
+      #nixfmt-rfc-style
+      #yt-dlp
+      #ffmpeg
+      #ollama
 
       # fonts
       nerd-fonts.fira-code

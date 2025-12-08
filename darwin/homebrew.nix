@@ -9,46 +9,46 @@
       cleanup = "zap";
     };
 
-    caskArgs.no_quarantine = true;
+    # caskArgs.no_quarantine = true;
     global.brewfile = true;
 
     # homebrew is best for GUI apps
     # nixpkgs is best for CLI tools
-    casks = [
-      # OS enhancements
-      "aerospace"
-      "cleanshot"
-      "hiddenbar"
-      "raycast"
-      "betterdisplay"
-
-      # dev
-      "cursor"
-      "ghostty"
-      "visual-studio-code"
-      "zed"
-
-      # messaging
-      "discord"
-      "slack"
-      "signal"
-
-      # other
-      "1password"
-      "anki"
-      "brave-browser"
-      "obsidian"
-      "protonvpn"
-      "spotify"
-      "thebrowsercompany-dia"
-      "zen"
-    ];
     brews = [
+      "cmake"
+      "npm"
+      "emacs-plus@30"
+      "ffmpeg"
+      "libtool"
+      "nixfmt"
+      # "pyright"
+      # "ruff"
+      "shellcheck"
+      "tree-sitter"
+      "qwen-code"
+      "uv"
+    ];
+    casks = [
+      "amethyst"
+      "antigravity"
+      "brave-browser"
+      "cursor"
+      "embyserver"
       "docker"
-      "colima"
+      "google-cloud-sdk"
+      "iina"
+      "jordanbaird-ice"
+      "logseq"
+      "maccy"
+      # "private-internet-access"
+      # "qbitorrent"
+      "spotify"
+      "stats"
+      "telegram"
+      "visual-studio-code"
     ];
     taps = [
-      "nikitabobko/tap"
+      "d12frosted/emacs-plus"
     ];
   };
 }

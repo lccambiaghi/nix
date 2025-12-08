@@ -4,7 +4,7 @@
     ./packages.nix
     ./git.nix
     ./shell.nix
-    ./mise.nix
+    #    ./mise.nix
   ];
 
   home = {

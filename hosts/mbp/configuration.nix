@@ -4,7 +4,7 @@
   ...
 }:
 {
-  networking.hostName = "my-macbook";
+  networking.hostName = "mbp";
 
   # host-specific homebrew casks
   homebrew.casks = [
@@ -14,7 +14,7 @@
   # host-specific home-manager configuration
   home-manager.users.${primaryUser} = {
     home.packages = with pkgs; [
-      graphite-cli
+    #  graphite-cli
     ];
 
     programs = {

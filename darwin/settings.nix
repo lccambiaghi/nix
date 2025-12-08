@@ -17,7 +17,7 @@
       };
 
       finder = {
-        AppleShowAllFiles = true; # hidden files
+        #AppleShowAllFiles = true; # hidden files
         AppleShowAllExtensions = true; # file extensions
         _FXShowPosixPathInTitle = true; # title bar full path
         ShowPathbar = true; # breadcrumb nav at bottom
