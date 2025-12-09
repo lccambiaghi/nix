@@ -16,7 +16,7 @@ exclude_start: "# Begin Exclude Linting"
 exclude_end: "# End Exclude Linting"
     '';
   };
-  xdg = {
-    enable = true;
-  };
+  # xdg = {
+  #   enable = true;
+  # };
 }
