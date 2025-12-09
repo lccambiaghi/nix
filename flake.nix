@@ -40,5 +40,25 @@
         specialArgs = { inherit inputs self primaryUser; };
       };
 
+      # Home-manager-only config for a Linux VM (reuses the same home modules)
+      homeConfigurations.cloudVM = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          config = {
+            allowUnfree = true;
+            allowUnsupportedSystem = true;
+          };
+        };
+        extraSpecialArgs = {
+          inherit inputs self primaryUser;
+        };
+        modules = [
+          ./home
+          {
+            home.homeDirectory = "/home/${primaryUser}";
+          }
+        ];
+      };
+
     };
 }
