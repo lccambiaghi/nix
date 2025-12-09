@@ -9,13 +9,12 @@
       cleanup = "zap";
     };
 
-    # caskArgs.no_quarantine = true;
+    caskArgs.no_quarantine = true;
     global.brewfile = true;
 
     # homebrew is best for GUI apps
     # nixpkgs is best for CLI tools
     brews = [
-      "cmake"
       "npm"
       "emacs-plus@30"
       "ffmpeg"
@@ -23,8 +22,6 @@
       "nixfmt"
       # "pyright"
       # "ruff"
-      "shellcheck"
-      "tree-sitter"
       "qwen-code"
       "uv"
     ];

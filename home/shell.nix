@@ -12,6 +12,10 @@ _: {
     };
   };
 
+  programs.htop = {
+    enable = true;
+  };
+
   programs.starship = {
     enable = true;
     settings = {
@@ -22,7 +26,9 @@ _: {
       };
     };
   };
+
   programs.direnv = {
     enable = true;
   };
+
 }

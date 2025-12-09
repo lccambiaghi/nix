@@ -17,4 +17,12 @@
     # create .hushlogin file to suppress login messages
     file.".hushlogin".text = "";
   };
+
+  programs = {
+    home-manager = {
+      enable = true;
+      path = "../home.nix";
+    };
+  };
+
 }
