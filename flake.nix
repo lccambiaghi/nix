@@ -39,6 +39,14 @@
         ];
         specialArgs = { inherit inputs self primaryUser; };
       };
+      darwinConfigurations."brc" = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          ./darwin
+          ./hosts/brc/configuration.nix
+        ];
+        specialArgs = { inherit inputs self primaryUser; };
+      };
 
       # Home-manager-only config for a Linux VM (reuses the same home modules)
       homeConfigurations.cloudVM = home-manager.lib.homeManagerConfiguration {

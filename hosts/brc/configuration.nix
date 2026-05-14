@@ -4,36 +4,23 @@
   ...
 }:
 {
-  networking.hostName = "mbp";
+  networking.hostName = "brc";
 
-  # homebrew is best for GUI apps
-  # nixpkgs is best for CLI tools
   homebrew.brews = [
-    "npm"
-    # "emacs-plus@30"
-    "ffmpeg"
-    "libtool"
-    "nixfmt"
-    # "pyright"
-    # "ruff"
-    "qwen-code"
     "uv"
   ];
   homebrew.casks = [
-    #"amethyst"
-    #"antigravity"
+    "amethyst"
     "brave-browser"
-    "cursor"
-    #"embyserver"
-    #"docker"
-    "google-cloud-sdk"
+    "docker-desktop"
+    "emacs-plus-app"
     #"iina"
     "jordanbaird-ice"
+    "libreoffice"
     "logseq"
     "maccy"
-    # "private-internet-access"
-    # "qbitorrent"
-    "spotify"
+    "microsoft-edge"
+    # "spotify"
     "stats"
     #"telegram"
     "visual-studio-code"

@@ -6,7 +6,7 @@ help: ## Show all available targets
 
 .PHONY: reload
 reload: ## Rebuild MBP M1 configuration
-	sudo darwin-rebuild switch --flake .#mbp
+	sudo darwin-rebuild switch --flake .#brc
 
 .PHONY: update
 update: ## Update nixpkgs inputs
