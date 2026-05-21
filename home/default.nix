@@ -5,7 +5,8 @@
     ./git.nix
     ./shell.nix
     ./dotfiles
-    #    ./mise.nix
+    ./vscode.nix
+    ./mise.nix
   ];
 
   home = {

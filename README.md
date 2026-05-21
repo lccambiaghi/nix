@@ -20,11 +20,11 @@ cd ~/.config/nix
 ### 2) macOS host (`mbp`)
 
 ```bash
-# build and switch
-sudo darwin-rebuild switch --flake ~/.config/nix#mbp
+# first run
+sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/nix-darwin-25.11#darwin-rebuild -- switch --flake ~/.config/nix/#brc
 
-# after first run you can use the alias from shell.nix
-nix-switch
+# from second run:
+make reload
 ```
 
 ### 3) Linux VM (`cloudVM`, Home Manager only)

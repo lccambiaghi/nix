@@ -7,10 +7,14 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    initExtra = ''
+      [[ -f ~/.secrets ]] && source ~/.secrets
+    '';
+
     shellAliases = {
-      la = "ls -la";
+      la = "ls -lah";
       ".." = "cd ..";
-      "nix-switch" = "sudo darwin-rebuild switch --flake ~/.config/nix";
+      "spi" = "PI_LOCAL_MODELS=1 mise run pi";
     };
   };
 
@@ -85,10 +89,6 @@
         "$character"
       ];
     };
-  };
-
-  programs.direnv = {
-    enable = true;
   };
 
 }
