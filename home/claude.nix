@@ -3,8 +3,11 @@
 # Files live in home/claude/ in this repo and are symlinked into ~/.claude
 # with mkOutOfStoreSymlink, which points the symlink at the repo checkout
 # (not the read-only Nix store). That means editing ~/.claude/skills/... or
-# ~/.claude/settings.json edits the repo file directly — no rebuild needed.
+# ~/.claude/CLAUDE.md edits the repo file directly — no rebuild needed.
 # Run a rebuild only when adding/removing a managed path below.
+#
+# settings.json is intentionally NOT managed here: it holds machine-specific
+# and tool-managed state (e.g. supacode hooks), so it stays a plain local file.
 { config, ... }:
 
 let
@@ -17,7 +20,6 @@ let
 in
 {
   home.file = {
-    ".claude/settings.json".source = mkOutOfStoreSymlink "${claudeDir}/settings.json";
     ".claude/CLAUDE.md".source = mkOutOfStoreSymlink "${claudeDir}/CLAUDE-USER.md";
     ".claude/skills".source = mkOutOfStoreSymlink "${claudeDir}/skills";
     ".claude/statusline-command.sh".source = mkOutOfStoreSymlink "${claudeDir}/statusline-command.sh";
