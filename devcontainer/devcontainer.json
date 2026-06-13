@@ -1,0 +1,45 @@
+{
+  // Shared devcontainer, stored in ~/.config/nix and symlinked into each project as .devcontainer.
+  // Keep this project-agnostic: use ${containerWorkspaceFolder} instead of hardcoded paths, and
+  // put per-project setup in an (optional) .devcontainer.local.sh at the project root.
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
+  },
+  "mounts": [
+    // Live bind-mount the Mac host's ~/.claude (statusline, settings, plugins, agents) and ~/.claude.json.
+    // ${localEnv:HOME} resolves on the host (your Mac). Only works for a local Docker Desktop devcontainer.
+    "source=${localEnv:HOME}/.claude,target=/home/vscode/.claude,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.claude.json,target=/home/vscode/.claude.json,type=bind,consistency=cached",
+    "source=claude-code-bashhistory,target=/commandhistory,type=volume"
+  ],
+  // .claude is a Mac bind (ownership mapped by Docker Desktop), so only the bash-history volume needs chown.
+  // mise runs only if the project has a .mise.toml; project-specific steps go in .devcontainer.local.sh.
+  "postCreateCommand": "sudo chown -R vscode:vscode /commandhistory && echo \"alias claude='claude --dangerously-skip-permissions'\" >> /home/vscode/.bashrc && echo 'eval \"$(mise activate bash)\"' >> /home/vscode/.bashrc && if [ -f \"${containerWorkspaceFolder}/.mise.toml\" ]; then mise trust \"${containerWorkspaceFolder}/.mise.toml\" && mise install; fi && if [ -f \"${containerWorkspaceFolder}/.devcontainer.local.sh\" ]; then bash \"${containerWorkspaceFolder}/.devcontainer.local.sh\"; fi",
+  "containerEnv": {
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "NODE_OPTIONS": "--max-old-space-size=4096",
+    "UV_LINK_MODE": "copy"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "anthropic.claude-code",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}

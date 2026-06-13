@@ -7,6 +7,7 @@
     ./dotfiles
     ./vscode.nix
     ./mise.nix
+    ./claude.nix
   ];
 
   home = {
