@@ -10,10 +10,12 @@
     "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
   },
   "mounts": [
-    // Live bind-mount the Mac host's ~/.claude (statusline, settings, plugins, agents) and ~/.claude.json.
+    // Live bind-mount the Mac host's ~/.claude (settings, credentials, plugins, agents).
     // ${localEnv:HOME} resolves on the host (your Mac). Only works for a local Docker Desktop devcontainer.
+    // Deliberately NOT mounting ~/.claude.json: it carries the host's native-install metadata
+    // (expects ~/.local/bin/claude), which doesn't exist in the container and triggers a bogus
+    // "claude command missing/broken" warning. Auth lives in ~/.claude/.credentials.json (mounted below).
     "source=${localEnv:HOME}/.claude,target=/home/vscode/.claude,type=bind,consistency=cached",
-    "source=${localEnv:HOME}/.claude.json,target=/home/vscode/.claude.json,type=bind,consistency=cached",
     // ~/.claude's skills, statusline and CLAUDE.md are nix out-of-store symlinks into
     // ~/.config/nix (via /nix/store), which isn't mounted — they'd dangle in the container.
     // Mount the real repo files over those paths so they resolve and stay live-editable.
