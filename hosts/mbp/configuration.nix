@@ -16,6 +16,7 @@
     "libheif"
     "libtool"
     "nixfmt"
+    "opencode"
     # "pyright"
     # "python@3.13"
     # "ruff"
@@ -53,9 +54,9 @@
     "supacode"
   ];
   homebrew.taps = [
+    "anomalyco/tap"
     "d12frosted/emacs-plus"
     "docker/tap"
-    # "anomalyco/tap/opencode"
   ];
 
   # host-specific home-manager configuration

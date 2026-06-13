@@ -17,13 +17,13 @@ git clone https://github.com/lucacambiaghi/config-nix ~/.config/nix
 cd ~/.config/nix
 ```
 
-### 2) macOS host (`mbp`)
+### 2) macOS hosts (`mbp`, `brc`)
 
 ```bash
-# first run
-sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/nix-darwin-25.11#darwin-rebuild -- switch --flake ~/.config/nix/#brc
+# first run (replace <host> with mbp or brc)
+sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/nix-darwin-25.11#darwin-rebuild -- switch --flake ~/.config/nix/#<host>
 
-# from second run:
+# from second run (auto-detects the host from hostname):
 make reload
 ```
 
@@ -44,8 +44,9 @@ nix build ~/.config/nix#homeConfigurations.cloudVM.activationPackage
 ## Structure
 
 ```
-flake.nix          # inputs and outputs (mbp + cloudVM)
+flake.nix          # inputs and outputs (mbp + brc + cloudVM)
 darwin/            # nix-darwin modules (macOS)
 home/              # Home Manager modules (shared by mac + VM)
 hosts/mbp/         # host-specific darwin module(s)
+hosts/brc/         # host-specific darwin module(s)
 ```
