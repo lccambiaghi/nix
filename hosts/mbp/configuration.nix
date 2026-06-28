@@ -43,6 +43,7 @@
     # "private-internet-access"
     # "qbitorrent"
     "pycharm"
+    "quickrecorder"
     "sbx"
     "spotify"
     "stats"
@@ -57,6 +58,7 @@
     "anomalyco/tap"
     "d12frosted/emacs-plus"
     "docker/tap"
+    "lihaoyun6/tap"
   ];
 
   # host-specific home-manager configuration

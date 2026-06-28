@@ -1,24 +1,11 @@
-{ lib, ... }:
+{ config, ... }:
 let
-  settingsJson = builtins.toJSON {
-    "claudeCode.preferredLocation" = "panel";
-    "workbench.colorTheme" = "Quiet Light";
-    "terminal.integrated.mouseWheelScrollSensitivity" = 3;
-    "vim.useSystemClipboard" = true;
-  };
-  settingsPath = "Library/Application Support/Code/User/settings.json";
+  inherit (config.lib.file) mkOutOfStoreSymlink;
+  # On-disk repo path so the symlink targets the live file (not the nix store),
+  # making settings.json editable from within VSCode without a rebuild.
+  nixConfigDirectory = "${config.home.homeDirectory}/.config/nix";
 in
 {
-  home.activation.vscodeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    target="$HOME/${settingsPath}"
-    if [ -L "$target" ]; then
-      rm "$target"
-    fi
-    if [ ! -f "$target" ]; then
-      mkdir -p "$(dirname "$target")"
-      cat > "$target" << 'SETTINGS'
-    ${settingsJson}
-    SETTINGS
-    fi
-  '';
+  home.file."Library/Application Support/Code/User/settings.json".source =
+    mkOutOfStoreSymlink "${nixConfigDirectory}/home/vscode-settings.json";
 }

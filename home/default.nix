@@ -27,4 +27,8 @@
     };
   };
 
+  # home-manager builds an options.json for its man pages that embeds the flake
+  # source without a proper store context, triggering a build warning.
+  manual.manpages.enable = false;
+
 }

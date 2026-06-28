@@ -1,0 +1,10 @@
+{
+  "terminal.integrated.mouseWheelScrollSensitivity": 3,
+  "vim.useSystemClipboard": true,
+  "workbench.panel.defaultLocation": "right",
+  "claudeCode.allowDangerouslySkipPermissions": true,
+  "claudeCode.initialPermissionMode": "bypassPermissions",
+  "claudeCode.preferredLocation": "panel",
+  "remote.autoForwardPortsSource": "hybrid",
+  "workbench.colorTheme": "Quiet Light",
+}

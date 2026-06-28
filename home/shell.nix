@@ -7,7 +7,7 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
-    initExtra = ''
+    initContent = ''
       [[ -f ~/.secrets ]] && source ~/.secrets
     '';
 
