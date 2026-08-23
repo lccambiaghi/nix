@@ -10,6 +10,7 @@ HOST := $(shell hostname -s)
 .PHONY: reload
 reload: ## Rebuild the configuration for the current host (auto-detected from hostname)
 	sudo darwin-rebuild switch --flake .#$(HOST)
+	@if [ "$(HOST)" = "mbp" ]; then $(MAKE) rebind; fi
 
 .PHONY: update
 update: ## Update nixpkgs inputs

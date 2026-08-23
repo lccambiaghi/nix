@@ -58,6 +58,7 @@
   environment = {
     systemPath = [
       "/opt/homebrew/bin"
+      "$HOME/.local/bin"
     ];
     pathsToLink = [ "/Applications" ];
   };

@@ -34,6 +34,7 @@
     # "google-cloud-sdk"
     "gcloud-cli"
     "iina"
+    "jdownloader"
     "jordanbaird-ice"
     "lm-studio"
     "logseq"
