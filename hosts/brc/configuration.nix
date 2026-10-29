@@ -64,6 +64,9 @@
       };
     };
 
+    # oMLX CLI shim; its installer appends this to ~/.zshrc, which breaks the relink
+    home.sessionPath = [ "$HOME/.omlx/bin" ];
+
     # A Chromium that Claude Code can reach. Its sandbox denies the Mach service
     # registration Chromium needs to spawn child processes, so playwright cannot
     # launch a browser from inside a tool call and every HTML check degrades to a
@@ -116,17 +119,16 @@
     # and, through it, the 007 Briefs. Runs on the host because osascript is blocked
     # inside the sandbox. Not on a timer: the 07:00 `wiki-daily` scheduled task drops a
     # request file in the queue (make email-pull), this agent fires on it and
-    # answers in queue/done. Only legacy Outlook answers Apple Events and the two modes
-    # are one app, so the script flips the profile to legacy for the pull and back
-    # (Outlook restarts for about a minute).
+    # answers in /tmp/outlook-pull/done. Only legacy Outlook answers Apple Events and the
+    # two modes are one app, so the script flips the profile to legacy for the pull and
+    # back (Outlook restarts for about a minute). No project folder name here, so cowork
+    # folders can be renamed: make resolves 004 by number.
     launchd.agents.outlook-pull = {
       enable = true;
       config = {
-        ProgramArguments = [
-          "/bin/bash"
-          "/Users/luca/cowork/000 Knowledge/004 email archive/outlook_pull_service.sh"
-        ];
-        QueueDirectories = [ "/Users/luca/cowork/000 Knowledge/004 email archive/resources/outlook/queue/in" ];
+        ProgramArguments = [ "/usr/bin/make" "-C" "/Users/luca/cowork" "email-pull-service" ];
+        QueueDirectories = [ "/tmp/outlook-pull/in" ];
+        RunAtLoad = true;   # the service mkdirs the queue, which /tmp loses on reboot
         StandardOutPath = "/tmp/outlook-pull.log";
         StandardErrorPath = "/tmp/outlook-pull.log";
       };
