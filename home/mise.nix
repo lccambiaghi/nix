@@ -1,7 +1,7 @@
 { ... }:
 {
   programs.mise = {
-    enable = true;
+    enable = false;
     enableZshIntegration = true;
 
     globalConfig = {
